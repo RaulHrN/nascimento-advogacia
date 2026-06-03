@@ -1,19 +1,20 @@
-"use client";
-
 import * as React from "react";
-import * as LabelPrimitive from "@radix-ui/react-label";
 
 import { cn } from "./utils";
 
-function Label({
-  className,
-  ...props
-}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
-    <LabelPrimitive.Root
-      data-slot="label"
+    <input
+      type={type}
+      data-slot="input"
       className={cn(
-        "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
+        "flex h-9 w-full min-w-0 rounded-md border border-[var(--input-border)] bg-[var(--input-bg)] px-3 py-1 text-base text-[var(--color-text)] shadow-[var(--shadow-xs)] outline-none transition-[color,background-color,border-color,box-shadow] duration-200 md:text-sm",
+        "placeholder:text-[var(--input-placeholder)]",
+        "selection:bg-[var(--color-primary)] selection:text-[var(--color-primary-contrast)]",
+        "focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)] focus-visible:border-[var(--input-border-focus)]",
+        "aria-invalid:border-[var(--color-error)] aria-invalid:ring-2 aria-invalid:ring-[var(--color-error)]/20",
+        "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+        "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-[var(--color-text)]",
         className,
       )}
       {...props}
@@ -21,4 +22,4 @@ function Label({
   );
 }
 
-export { Label };
+export { Input };

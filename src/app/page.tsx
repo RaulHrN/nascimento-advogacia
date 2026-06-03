@@ -1,11 +1,11 @@
-import { AreasDeAtuacao } from "@/components/layout/areasDeAtuacao";
-import { ComoFunciona } from "@/components/layout/comoFunciona";
-import { ContatoFormulario } from "@/components/layout/contatoFormulario";
-import { Depoimentos } from "@/components/layout/depoimentos";
-import { FAQ } from "@/components/layout/faq";
+import { AreasDeAtuacao } from "@/components/sections/areasDeAtuacao";
+import { ComoFunciona } from "@/components/sections/comoFunciona";
+import { ContatoFormulario } from "@/components/sections/contatoFormulario";
+import { Depoimentos } from "@/components/sections/depoimentos";
+import { FAQ } from "@/components/sections/faq";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
-import { Sobre } from "@/components/layout/sobre";
+import { Sobre } from "@/components/sections/sobre";
 import { Hero } from "@/components/sections/hero";
 
 export default function Home() {
@@ -13,6 +13,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Header />
       <main>
+        <Hero />
         <AreasDeAtuacao />
         <Sobre />
         <ComoFunciona />
