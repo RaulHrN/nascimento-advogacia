@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nascimento Advocacia
 
-## Getting Started
+Projeto Next.js 16 com App Router, TypeScript e Tailwind CSS 4.
 
-First, run the development server:
+## Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estrutura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```txt
+src/
+  app/          Rotas, layouts e arquivos especiais do App Router
+  components/   Componentes compartilhados
+  lib/          Codigo compartilhado sem UI
+  styles/       CSS global, Tailwind e tema
+public/         Arquivos estaticos publicos
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Arquivos de configuracao ficam na raiz do projeto, como `next.config.ts`,
+`tsconfig.json`, `postcss.config.mjs` e `eslint.config.mjs`.
 
-## Learn More
+## Estilos
 
-To learn more about Next.js, take a look at the following resources:
+O ponto de entrada global e `src/styles/index.css`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `tailwind.css`: Tailwind CSS, `tw-animate-css` e `@source`.
+- `theme.css`: tokens, tema, base global e animacoes locais.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+As fontes sao carregadas por `next/font/google` no layout raiz para evitar
+requisicoes externas no navegador.
 
-## Deploy on Vercel
+## Seguranca
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Use `.env.local` para valores locais e secretos.
+- Use `.env.example` apenas como modelo, sem credenciais reais.
+- Nao coloque segredos em componentes client-side.
+- Prefira helpers server-side em `src/lib` quando lidarem com credenciais.
