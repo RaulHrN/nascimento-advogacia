@@ -37,7 +37,7 @@ type AccordionProps = {
 
 function normalizeValue(
   value: AccordionValue,
-  type: "single" | "multiple"
+  type: "single" | "multiple",
 ): string[] {
   if (type === "multiple") {
     return Array.isArray(value) ? value : [];
@@ -62,7 +62,7 @@ function Accordion({
   const isControlled = value !== undefined;
 
   const [internalValue, setInternalValue] = React.useState<string[]>(
-    normalizeValue(defaultValue, type)
+    normalizeValue(defaultValue, type),
   );
 
   const currentValue = isControlled
@@ -95,7 +95,7 @@ function Accordion({
       if (!isControlled) setInternalValue(nextValue);
       onValueChange?.(nextValue[0]);
     },
-    [type, collapsible, currentValue, isControlled, onValueChange]
+    [type, collapsible, currentValue, isControlled, onValueChange],
   );
 
   return (
@@ -107,7 +107,7 @@ function Accordion({
         toggleItem,
       }}
     >
-      <div data-slot="accordion" className={className}>
+      <div data-slot="accordion" className={cn("w-full", className)}>
         {children}
       </div>
     </AccordionContext.Provider>
@@ -129,7 +129,7 @@ function useAccordionItemContext() {
 
   if (!context) {
     throw new Error(
-      "AccordionTrigger and AccordionContent must be used inside AccordionItem"
+      "AccordionTrigger and AccordionContent must be used inside AccordionItem",
     );
   }
 
@@ -161,7 +161,7 @@ function AccordionItem({
       <div
         data-slot="accordion-item"
         data-state={isOpen ? "open" : "closed"}
-        className={cn("border-b last:border-b-0", className)}
+        className={cn("border-b border-border last:border-b-0", className)}
         {...props}
       >
         {children}
@@ -197,19 +197,22 @@ function AccordionTrigger({
           onClick?.(e);
         }}
         className={cn(
-          "flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium outline-none transition-all hover:underline",
-          "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          "flex w-full items-start justify-between gap-4 rounded-md py-4 text-left text-base font-medium text-primary transition-colors duration-200",
+          "hover:text-[var(--gold-elegant)]",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           "disabled:pointer-events-none disabled:opacity-50",
-          className
+          className,
         )}
         {...props}
       >
         <span>{children}</span>
+
         <ChevronDownIcon
           className={cn(
-            "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200",
-            item.isOpen && "rotate-180"
+            "mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200",
+            item.isOpen && "rotate-180",
           )}
+          aria-hidden="true"
         />
       </button>
     </h3>
@@ -241,14 +244,13 @@ function AccordionContent({
       data-state={item.isOpen ? "open" : "closed"}
       hidden={!item.isOpen}
       className={cn(
-        "overflow-hidden text-sm",
-        item.isOpen && "animate-accordion-down",
-        !item.isOpen && forceMount && "animate-accordion-up",
-        className
+        "overflow-hidden text-sm text-muted-foreground",
+        item.isOpen && "animate-fadeIn",
+        className,
       )}
       {...props}
     >
-      <div className="pt-0 pb-4">{children}</div>
+      <div className="pb-4 leading-relaxed">{children}</div>
     </div>
   );
 }
