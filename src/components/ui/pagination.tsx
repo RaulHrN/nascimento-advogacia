@@ -58,6 +58,10 @@ function PaginationLink({
           variant: isActive ? "outline" : "ghost",
           size,
         }),
+        isActive &&
+          "border-[var(--color-border)] bg-[var(--color-surface-2)] text-[var(--color-secondary)] shadow-[var(--shadow-xs)] hover:bg-[var(--color-surface-3)]",
+        !isActive &&
+          "text-[var(--color-text)] hover:bg-[var(--color-surface-2)] hover:text-[var(--color-secondary)]",
         className,
       )}
       {...props}
@@ -76,7 +80,7 @@ function PaginationPrevious({
       className={cn("gap-1 px-2.5 sm:pl-2.5", className)}
       {...props}
     >
-      <ChevronLeftIcon />
+      <ChevronLeftIcon className="size-4" />
       <span className="hidden sm:block">Previous</span>
     </PaginationLink>
   );
@@ -94,7 +98,7 @@ function PaginationNext({
       {...props}
     >
       <span className="hidden sm:block">Next</span>
-      <ChevronRightIcon />
+      <ChevronRightIcon className="size-4" />
     </PaginationLink>
   );
 }
@@ -107,7 +111,10 @@ function PaginationEllipsis({
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn(
+        "flex size-9 items-center justify-center text-[var(--color-text-muted)]",
+        className,
+      )}
       {...props}
     >
       <MoreHorizontalIcon className="size-4" />
