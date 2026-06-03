@@ -14,11 +14,14 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 10px);
 
   --shadow-xs: 0 1px 2px rgba(11, 28, 44, 0.06);
   --shadow-sm: 0 1px 2px rgba(11, 28, 44, 0.08);
   --shadow-md: 0 6px 18px rgba(11, 28, 44, 0.10);
   --shadow-lg: 0 14px 40px rgba(11, 28, 44, 0.14);
+  --shadow-xl: 0 24px 64px rgba(11, 28, 44, 0.18);
+  --shadow-gold: 0 4px 18px rgba(200, 155, 60, 0.22);
 
   --navy-deep: #0b1c2c;
   --navy-darker: #081420;
@@ -28,12 +31,27 @@
   --gray-medium: #6b7280;
   --gray-light: #f9fafb;
 
+  /* Layout */
+  --content-wide: 1200px;
+  --content-default: 960px;
+  --content-narrow: 640px;
+
+  /* Section spacing */
+  --section-padding-y: 5rem;
+
   --color-bg: #ffffff;
   --color-surface: #fcfcfd;
   --color-surface-2: #f7f8fa;
   --color-surface-3: #eef1f5;
   --color-card: #ffffff;
   --color-input-background: #f3f3f5;
+  --card-bg: var(--color-card);
+  --color-surface-dark: #0b1c2c;
+  --color-surface-dark-2: #081420;
+  --hero-bg: #0b1c2c;
+  --hero-text: #ffffff;
+  --hero-muted: rgba(255, 255, 255, 0.70);
+  --header-bg: rgba(11, 28, 44, 0.92);
 
   --color-text: #0f1722;
   --color-text-muted: #6b7280;
@@ -44,6 +62,7 @@
   --color-primary-hover: #081420;
   --color-primary-active: #06101a;
   --color-primary-soft: rgba(11, 28, 44, 0.12);
+  --color-primary-contrast: #ffffff;
 
   --color-secondary: #0b1c2c;
   --color-secondary-soft: #e9edf2;
@@ -121,6 +140,13 @@
   --color-surface-3: #232936;
   --color-card: #151821;
   --color-input-background: #171b24;
+  --card-bg: var(--color-card);
+  --color-surface-dark: #0a0d12;
+  --color-surface-dark-2: #070a0e;
+  --hero-bg: #070a0e;
+  --hero-text: #f4f7fb;
+  --hero-muted: rgba(244, 247, 251, 0.65);
+  --header-bg: rgba(7, 10, 14, 0.92);
 
   --color-text: #f4f7fb;
   --color-text-muted: #a7b0bd;
@@ -131,6 +157,7 @@
   --color-primary-hover: #d5ab52;
   --color-primary-active: #b8892e;
   --color-primary-soft: rgba(200, 155, 60, 0.18);
+  --color-primary-contrast: #0f1115;
 
   --color-secondary: #f4f7fb;
   --color-secondary-soft: #232936;
@@ -243,6 +270,7 @@
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
   --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
 }
 
 @layer base {
@@ -317,7 +345,9 @@
   }
 
   :focus-visible {
-    outline: none;
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
   }
 
   @keyframes fadeIn {
